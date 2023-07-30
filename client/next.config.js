@@ -23,7 +23,14 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['fueler.io'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fueler.io",
+        pathname: "/**",
+      },
+    ],
+    unoptimized: true,
   }
 }
 
