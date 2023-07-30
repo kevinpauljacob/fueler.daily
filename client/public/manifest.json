@@ -1,0 +1,25 @@
+{
+	"manifest_version": 3,
+	"name": "fueler.daily",
+	"short_name": "fueler.daily",
+	"version": "0.0.0",
+	"description": "Transform how you present your work and growth with this game-changing extension. Publish projects, build a living resume, and get inspired by the Fueler community's latest content. Fuel your success today!",
+	"icons": {
+		"16": "/icons/favicon-16x16.png",
+		"32": "/icons/favicon-32x32.png",
+		"180": "/icons/apple-touch-icon.png"
+	},
+	"permissions": ["https://fueler-daily.onrender.com/"],
+	"content_scripts": [
+		{
+			"matches": ["https://*/*", "http://*/*"],
+			"js": ["inject.js"]
+		}
+	],
+	"chrome_url_overrides": {
+		"newtab": "extensions.html"
+	},
+	"action": {
+		"default_popup": "extensions.html"
+	}
+}
