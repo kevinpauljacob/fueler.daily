@@ -4,6 +4,9 @@
 import util from 'util';
 import request from 'request';
 import cheerio from 'cheerio';
+const NodeCache = require('node-cache');
+
+const cache = new NodeCache();
 
 class FuelerScraper {
 	readonly fueler = request.defaults({ jar: true });
@@ -12,6 +15,11 @@ class FuelerScraper {
 	blog(): Promise<BlogPost[]> {
 		return new Promise(async (resolve, reject) => {
 			try {
+				const cachedBlogs = cache.get('fueler-blogs');
+				if (cachedBlogs) {
+					resolve(cachedBlogs);
+					return;
+				}
 				const response = await this.fuelerGet({
 					url: 'https://fueler.io/blog',
 				});
@@ -49,6 +57,8 @@ class FuelerScraper {
 						});
 					}
 				});
+				const SIX_HRS_IN_SECONDS = 6 * 60 * 60;
+				cache.set('fueler-blogs', blogs, SIX_HRS_IN_SECONDS);
 				resolve(blogs);
 			} catch (error) {
 				// console.log(error);
@@ -60,6 +70,11 @@ class FuelerScraper {
 	discover(): Promise<DiscoverPost[]> {
 		return new Promise(async (resolve, reject) => {
 			try {
+				const cachedDiscover = cache.get('fueler-discover');
+				if (cachedDiscover) {
+					resolve(cachedDiscover);
+					return;
+				}
 				const response = await this.fuelerGet({
 					url: 'https://fueler.io/discover',
 				});
@@ -95,6 +110,12 @@ class FuelerScraper {
 					};
 					discoverContent.push(discover);
 				});
+				const ONE_HRS_IN_SECONDS = 1 * 60 * 60;
+				cache.set(
+					'fueler-discover',
+					discoverContent,
+					ONE_HRS_IN_SECONDS
+				);
 				resolve(discoverContent);
 			} catch (error) {
 				console.log(error);
