@@ -13,8 +13,6 @@ import appRouter from './routers';
 import ApiError from './utils/apiError';
 import errorHandler from './middlewares/errorHandler';
 
-require('./utils/fulerScraper');
-
 // Express Application
 const app = express();
 

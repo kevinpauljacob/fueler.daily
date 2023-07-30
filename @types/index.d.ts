@@ -7,7 +7,15 @@ interface BlogPost {
 	readTime: string;
 }
 
-interface DiscoverPost {}
+interface DiscoverPost {
+	cover: string;
+	link: string;
+	title: string;
+	user: {
+		img: string;
+		name: string;
+	};
+}
 
 interface ApiErrorOptions {
 	message: string;

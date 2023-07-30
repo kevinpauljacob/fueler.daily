@@ -27,6 +27,13 @@ export const fetchDiscoverContent = async (
 ) => {
 	try {
 		const scraper = new FuelerScraper();
+		const discover = await scraper.discover();
+		return res
+			.status(200)
+			.json({
+				data: { discover },
+				message: 'content/discover-content-fetched',
+			});
 	} catch (error) {
 		next(error);
 	}

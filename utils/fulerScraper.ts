@@ -57,7 +57,51 @@ class FuelerScraper {
 		});
 	}
 
-	discover() {}
+	discover(): Promise<DiscoverPost[]> {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const response = await this.fuelerGet({
+					url: 'https://fueler.io/discover',
+				});
+				const $ = cheerio.load(response.body);
+				const discoverContent: DiscoverPost[] = [];
+				$('.card-body').each((cI, cEle) => {
+					const discover = {} as DiscoverPost;
+					const a = $(cEle.children);
+					discover.link = $(cEle).find('a').attr('href') ?? '';
+					let cover = '';
+					Object.entries(
+						$(cEle).find('div figure').css() ?? {}
+					).forEach(([key, val]) => {
+						if (key.indexOf('background-image') > -1) {
+							cover = val
+								.match(/\((.*?)\)/)![1]
+								.replace(/('|")/g, '');
+						}
+					});
+
+					discover.cover = cover;
+					discover.title = $(a.get(1)).find('h4').text();
+					const userDetails = $(a.get(1))
+						.find('.user-details')
+						.children();
+					const [img, name] = [
+						$(userDetails.get(0)).find('img').attr('src') ?? '',
+						$(userDetails.get(1)).text().trim(),
+					];
+					discover.user = {
+						img,
+						name,
+					};
+					discoverContent.push(discover);
+				});
+				resolve(discoverContent);
+			} catch (error) {
+				console.log(error);
+				reject('content/discover-content-unavailable');
+			}
+		});
+	}
 }
 
 export default FuelerScraper;
