@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between items-center w-full py-2 px-4 border-b border-gray-300">
+    <nav className="sticky bg-white z-10 top-0 flex justify-between items-center w-full py-2 px-4 border-b border-gray-300">
         <div className="flex items-center">
             <Image src="/logo.png" alt="logo" width="50" height="50" />
             <p className="text-xl font-bold ">fueler

@@ -23,12 +23,12 @@ const Sidebar:  React.FC<SidebarProps> = ({ setCurrentPage}) => {
     }
 
   return (
-    <nav className="fixed h-[calc(100vh-68px)] w-[250px] flex flex-col justify-between border-r border-gray-200 py-5">
+    <nav className="fixed top-[46px] h-[calc(100vh-46px)] w-[250px] flex flex-col justify-between border-r border-gray-200 py-5">
         <div className="">
             {
                 links.map((link, index) => (
                     <div key={index}>
-                        <button onClick={handleChangePage(link.href)} className="hover:bg-cyan-400 hover:text-white hover:transition hover:duration-300 hover:ease-in-out py-2 px-5">
+                        <button onClick={handleChangePage(link.href)} className="border-t border-b border-gray-200 text-left hover:bg-cyan-400 hover:text-white hover:transition hover:duration-300 hover:ease-in-out py-2 px-5 w-full">
                             {link.label}
                         </button>
                     </div>

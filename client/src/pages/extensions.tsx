@@ -35,12 +35,14 @@ export default function Home() {
 
   return (
     <main
-      className={`bg-white text-black min-h-screen w-screen ${inter.className}`}
+      className={`bg-white text-black w-full ${inter.className}`}
     >
       <Navbar />
-        <section className="relative flex">
-            <Sidebar setCurrentPage={setCurrentPage} />
-            <div className="absolute right-0 grid grid-cols-4 w-[calc(100vw-250px)]">
+        <section className="relative flex w-full">
+            <div className="w-[250px]">
+            </div>
+            <Sidebar setCurrentPage={setCurrentPage}/>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-10 w-[86%]">
                 {currentPage === 'blogs' ? <>
                   {blogs.map((blog) => (
                     <BlogCard blog={blog} key={blog.title} />
