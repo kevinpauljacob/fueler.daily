@@ -9,7 +9,7 @@
 		"32": "/icons/favicon-32x32.png",
 		"180": "/icons/apple-touch-icon.png"
 	},
-	"permissions": ["https://fueler-daily.onrender.com/"],
+	"permissions": ["activeTab", "fueler-daily.onrender.com"],
 	"content_scripts": [
 		{
 			"matches": ["https://*/*", "http://*/*"],
@@ -20,6 +20,6 @@
 		"newtab": "extensions.html"
 	},
 	"action": {
-		"default_popup": "extensions.html"
+		"newtab": "extensions.html"
 	}
 }

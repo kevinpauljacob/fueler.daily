@@ -9,7 +9,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"build:extension": "next build && next export && npm run lint:build",
-		"lint:build": "move out/_next out/assets && sed -i 's/\\/_next/\\/assets/g' out/**.html",
+		"lint:build": "move out/_next out/assets && sed -i \"s/\\/_next/\\/assets/g\" out/**.html",
 		"package": "npm run build:extension && zip -r packages/$(date -u +\"%Y-%m-%dT%H:%M:%SZ\").zip out"
 	},
 	"watch": {
