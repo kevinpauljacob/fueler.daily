@@ -4,7 +4,7 @@
 import util from 'util';
 import request from 'request';
 import cheerio from 'cheerio';
-const NodeCache = require('node-cache');
+import NodeCache from 'node-cache';
 
 const cache = new NodeCache();
 
@@ -15,7 +15,7 @@ class FuelerScraper {
 	blog(): Promise<BlogPost[]> {
 		return new Promise(async (resolve, reject) => {
 			try {
-				const cachedBlogs = cache.get('fueler-blogs');
+				const cachedBlogs = cache.get('fueler-blogs') as BlogPost[];
 				if (cachedBlogs) {
 					resolve(cachedBlogs);
 					return;
@@ -70,7 +70,9 @@ class FuelerScraper {
 	discover(): Promise<DiscoverPost[]> {
 		return new Promise(async (resolve, reject) => {
 			try {
-				const cachedDiscover = cache.get('fueler-discover');
+				const cachedDiscover = cache.get(
+					'fueler-discover'
+				) as DiscoverPost[];
 				if (cachedDiscover) {
 					resolve(cachedDiscover);
 					return;
