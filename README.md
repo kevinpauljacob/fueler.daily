@@ -17,6 +17,11 @@ We built fueler.daily using the following tech stack:
 
 The extension utilizes web scraping to fetch data from the fueler.io website for the `/api/content/blog` and `/api/content/discover` endpoints. The frontend and backend components work together seamlessly to deliver a user-friendly experience.
 
+### Application Quick-Start
+
+- Server: `pnpm i` -> `pnpm run start:server`
+- Client: `cd client` -> `pnpm i` -> `pnpm run dev`
+
 ## Challenges we ran into
 
 During the development of fueler.daily, we encountered several challenges. The lack of a public API from fueler.io required us to use web scraping techniques, which presented its own set of complexities. Additionally, synchronizing the frontend and backend components to ensure smooth data presentation required careful coordination.
