@@ -22,6 +22,9 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    domains: ['fueler.io'],
+  }
 }
 
 module.exports = nextConfig
